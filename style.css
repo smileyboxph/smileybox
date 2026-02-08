@@ -153,7 +153,7 @@ body {
 .subtitle {
   margin: 4px 0 0;
   font-size: 0.9rem;
-  color: var(--accent);
+  color: #a495ff;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.16em;
@@ -407,4 +407,5 @@ html[data-theme="dark"] .theme-toggle .icon-moon {
     width: 24px;
     height: 24px;
   }
+
 }
