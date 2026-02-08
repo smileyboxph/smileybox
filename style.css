@@ -1,0 +1,410 @@
+/* ========== Light mode (default) ========== */
+:root {
+  --bg: #f1f5f9;
+  --bg-body: radial-gradient(circle at top, #e2e8f0 0, #f8fafc 50%, #f1f5f9 100%);
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --card-border: 1px solid rgba(15, 23, 42, 0.12);
+  --card-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+  --card-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.98));
+  --accent: #b45309;
+  --accent-soft: rgba(180, 83, 9, 0.12);
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border-subtle: rgba(15, 23, 42, 0.12);
+  --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.1);
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+  --transition-fast: 150ms ease-out;
+  /* Components */
+  --logo-bg: #f8fafc;
+  --logo-shadow: 0 16px 35px rgba(15, 23, 42, 0.15);
+  --description-bg: linear-gradient(135deg, rgba(241, 245, 249, 0.9), rgba(248, 250, 252, 0.95));
+  --description-border: 1px dashed rgba(15, 23, 42, 0.25);
+  --link-bg: rgba(255, 255, 255, 0.95);
+  --link-bg-hover: rgba(248, 250, 252, 0.98);
+  --link-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+  --link-shadow-hover: 0 16px 30px rgba(15, 23, 42, 0.12);
+  --link-border-hover: rgba(15, 23, 42, 0.2);
+  --footer-border: rgba(15, 23, 42, 0.2);
+  --closing-color: #334155;
+  /* Tiktok/Instagram/Facebook keep brand tints; light base */
+  --link-tint-bg: rgba(255, 255, 255, 0.95);
+}
+
+/* ========== Dark mode ========== */
+html[data-theme="dark"] {
+  --bg: #050816;
+  --bg-body: radial-gradient(circle at top, #1e293b 0, #020617 55%, #000 100%);
+  --bg-card: rgba(8, 12, 34, 0.9);
+  --card-border: 1px solid var(--border-subtle);
+  --card-shadow: 0 18px 40px rgba(15, 23, 42, 0.85);
+  --card-gradient: linear-gradient(135deg, rgba(51, 65, 85, 0.3), rgba(15, 23, 42, 0.95)), var(--bg-card);
+  --accent: #f6c453;
+  --accent-soft: rgba(246, 196, 83, 0.12);
+  --text-main: #f9fafb;
+  --text-muted: #9ca3af;
+  --border-subtle: rgba(148, 163, 184, 0.2);
+  --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.85);
+  --logo-bg: #020617;
+  --logo-shadow: 0 16px 35px rgba(15, 23, 42, 0.9);
+  --description-bg: radial-gradient(circle at top left, rgba(236, 252, 203, 0.15), rgba(15, 23, 42, 0.4)), rgba(15, 23, 42, 0.9);
+  --description-border: 1px dashed rgba(148, 163, 184, 0.55);
+  --link-bg: rgba(15, 23, 42, 0.9);
+  --link-bg-hover: rgba(15, 23, 42, 0.96);
+  --link-shadow: 0 10px 20px rgba(15, 23, 42, 0.55);
+  --link-shadow-hover: 0 16px 30px rgba(15, 23, 42, 0.85);
+  --link-border-hover: rgba(248, 250, 252, 0.9);
+  --footer-border: rgba(148, 163, 184, 0.5);
+  --closing-color: #e5e7eb;
+  --link-tint-bg: rgba(15, 23, 42, 0.95);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  background: var(--bg-body);
+  color: var(--text-main);
+}
+
+body {
+  min-height: 100vh;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+.card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--card-gradient);
+  border-radius: var(--radius-xl);
+  padding: 24px 20px 20px;
+  border: var(--card-border);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+@media (min-width: 640px) {
+  .card {
+    padding: 32px 32px 28px;
+  }
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 600px) {
+  .card-header {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    gap: 18px;
+  }
+}
+
+.logo-wrapper {
+  width: 120px;
+  height: 120px;
+  border-radius: 32px;
+  padding: 6px;
+  background: radial-gradient(circle at 20% 0, #fbbf24, #e11d48 40%, #4f46e5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--logo-shadow);
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  border-radius: 26px;
+  object-fit: cover;
+  background: var(--logo-bg);
+}
+
+.title-block h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  color: var(--accent);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+}
+
+@media (min-width: 640px) {
+  .title-block h1 {
+    font-size: 1.55rem;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+  }
+}
+
+.description {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  border-radius: 20px;
+  padding: 14px 14px 12px;
+  background: var(--description-bg);
+  border: var(--description-border);
+  margin-bottom: 18px;
+}
+
+.description-inner {
+  max-height: none;
+  overflow: visible;
+  transition: max-height 180ms ease-out;
+}
+
+.description p {
+  margin: 0 0 8px;
+}
+
+.description p:last-child {
+  margin-bottom: 0;
+}
+
+.closing {
+  font-weight: 500;
+  color: var(--closing-color);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.emoji {
+  font-size: 1.05rem;
+}
+
+.description-toggle {
+  display: none;
+  margin-top: 4px;
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: var(--accent-soft);
+  color: var(--accent);
+  align-self: flex-start;
+}
+
+.description-toggle:active {
+  transform: translateY(1px);
+}
+
+.description.is-collapsible .description-inner {
+  max-height: 5.6rem; /* show roughly 2–3 lines on mobile */
+  overflow: hidden;
+}
+
+.description.is-collapsible .description-toggle {
+  display: inline-flex;
+}
+
+.description.is-collapsible.is-expanded .description-inner {
+  max-height: 1000px;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.link-button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2px;
+  padding: 11px 16px 10px;
+  border-radius: 18px;
+  text-decoration: none;
+  color: var(--text-main);
+  background: var(--link-bg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--link-shadow);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+    border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.link-button:hover,
+.link-button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: var(--link-shadow-hover);
+  border-color: var(--link-border-hover);
+  background: var(--link-bg-hover);
+}
+
+.link-button:active {
+  transform: translateY(0);
+  box-shadow: var(--link-shadow);
+}
+
+.link-button .label {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.link-button .handle {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.link-button.tiktok {
+  background: radial-gradient(
+      circle at -10% 0,
+      rgba(34, 211, 238, 0.6),
+      transparent 55%
+    ),
+    radial-gradient(circle at 110% 120%, rgba(244, 63, 94, 0.6), transparent 55%),
+    var(--link-tint-bg);
+}
+
+.link-button.instagram {
+  background: radial-gradient(
+      circle at 0 0,
+      rgba(249, 115, 22, 0.45),
+      transparent 55%
+    ),
+    radial-gradient(circle at 110% 100%, rgba(236, 72, 153, 0.45), transparent 55%),
+    var(--link-tint-bg);
+}
+
+.link-button.facebook {
+  background: radial-gradient(
+      circle at -10% 0,
+      rgba(59, 130, 246, 0.5),
+      transparent 55%
+    ),
+    radial-gradient(circle at 110% 120%, rgba(37, 99, 235, 0.4), transparent 55%),
+    var(--link-tint-bg);
+}
+
+.footer {
+  text-align: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  border-top: 1px dashed var(--footer-border);
+  padding-top: 10px;
+  margin-top: 4px;
+}
+
+@media (min-width: 480px) {
+  .link-button {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 374px) {
+  .logo-wrapper {
+    width: 104px;
+    height: 104px;
+  }
+
+  .card {
+    padding: 20px 16px 16px;
+  }
+}
+
+/* ========== Dark mode toggle (mobile + desktop) ========== */
+.theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 100;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  color: var(--text-main);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-soft);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast),
+    background var(--transition-fast), color var(--transition-fast);
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  transform: scale(1.06);
+  box-shadow: var(--link-shadow-hover);
+  outline: none;
+}
+
+.theme-toggle:active {
+  transform: scale(0.98);
+}
+
+.theme-toggle svg {
+  width: 22px;
+  height: 22px;
+}
+
+.theme-toggle .icon-sun {
+  display: none;
+}
+
+.theme-toggle .icon-moon {
+  display: block;
+}
+
+html[data-theme="dark"] .theme-toggle .icon-sun {
+  display: block;
+}
+
+html[data-theme="dark"] .theme-toggle .icon-moon {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .theme-toggle {
+    top: 24px;
+    right: 24px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .theme-toggle svg {
+    width: 24px;
+    height: 24px;
+  }
+}

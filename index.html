@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smiley Box – Resibo ng Memories</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <button
+      type="button"
+      class="theme-toggle"
+      id="theme-toggle"
+      aria-label="Toggle dark mode"
+    >
+      <span class="icon-moon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5">
+          <path d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+        </svg>
+      </span>
+      <span class="icon-sun" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+        </svg>
+      </span>
+    </button>
+    <div class="page">
+      <main class="card">
+        <header class="card-header">
+          <div class="logo-wrapper">
+            <!-- Replace src with your actual logo file, e.g. logo.png -->
+            <img
+              src="smileylogosquare.jpg"
+              alt="Smiley Box logo"
+              class="logo"
+            />
+          </div>
+          <div class="title-block">
+            <h1>Smiley Box 
+              <nav></nav>big smiles. small price.
+            </h1>
+            <p class="subtitle">Receipt Photobooth</p>
+          </div>
+        </header>
+
+        <section class="description">
+          <div class="description-inner" data-collapsible>
+            <p>
+              Snap your memories at Smiley Box Receipt Photobooth.
+              Follow us on social media for more good vibes.
+            </p>
+            <p>
+              Each print is a reminder of a moment shared—whether it’s laughter
+              with friends, a special event, or a random day worth remembering.
+              Inspired by everyday receipts we usually forget, Smiley Box
+              transforms them into memories you’ll want to keep.
+            </p>
+            <p>
+              Smiley Box brings a fresh and
+              creative way to capture memories—instant, minimalist, and full of
+              heart. Because some moments don’t need filters or frames—just a
+              reason to smile.
+            </p>
+            <p class="closing">
+              Keep the smile. Keep the resibo. <span class="emoji">😊</span>
+            </p>
+          </div>
+          <button class="description-toggle" type="button">
+            See more…
+          </button>
+        </section>
+
+        <section class="links">
+          <a
+            class="link-button tiktok"
+            href="https://www.tiktok.com/@smileyboxph"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="label">TikTok</span>
+            <span class="handle">@smileyboxph</span>
+          </a>
+
+          <a
+            class="link-button instagram"
+            href="https://www.instagram.com/smileyboxph"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="label">Instagram</span>
+            <span class="handle">@smileyboxph</span>
+          </a>
+
+          <a
+            class="link-button facebook"
+            href="https://www.facebook.com/smileyboxph"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="label">Facebook</span>
+            <span class="handle">Smiley Box</span>
+          </a>
+        </section>
+
+        <footer class="footer">
+          <p>© <span id="year"></span> Smiley Box. All rights reserved.</p>
+        </footer>
+      </main>
+    </div>
+
+    <script>
+      // Set current year in footer
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Dark mode toggle (persisted in localStorage)
+      (function () {
+        const STORAGE_KEY = "smileybox-theme";
+        const toggle = document.getElementById("theme-toggle");
+        const html = document.documentElement;
+
+        function getStored() {
+          return localStorage.getItem(STORAGE_KEY);
+        }
+        function setStored(value) {
+          if (value) localStorage.setItem(STORAGE_KEY, value);
+          else localStorage.removeItem(STORAGE_KEY);
+        }
+        function applyTheme(theme) {
+          if (theme === "dark") {
+            html.setAttribute("data-theme", "dark");
+            toggle?.setAttribute("aria-label", "Switch to light mode");
+          } else {
+            html.removeAttribute("data-theme");
+            toggle?.setAttribute("aria-label", "Switch to dark mode");
+          }
+        }
+
+        toggle?.addEventListener("click", function () {
+          const isDark = html.getAttribute("data-theme") === "dark";
+          const next = isDark ? "light" : "dark";
+          setStored(next);
+          applyTheme(next);
+        });
+
+        // Apply saved preference or default to light
+        const saved = getStored();
+        applyTheme(saved === "dark" ? "dark" : "light");
+      })();
+
+      // Mobile "See more..." toggle for description
+      (function () {
+        const container = document.querySelector(".description");
+        const inner = container?.querySelector(".description-inner");
+        const toggle = container?.querySelector(".description-toggle");
+
+        if (!container || !inner || !toggle) return;
+
+        const mq = window.matchMedia("(max-width: 640px)");
+
+        function applyMode() {
+          if (mq.matches) {
+            container.classList.add("is-collapsible");
+          } else {
+            container.classList.remove("is-collapsible", "is-expanded");
+          }
+        }
+
+        applyMode();
+        mq.addEventListener("change", applyMode);
+
+        toggle.addEventListener("click", () => {
+          const expanded = container.classList.toggle("is-expanded");
+          toggle.textContent = expanded ? "See less" : "See more…";
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+
